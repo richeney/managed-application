@@ -1,4 +1,6 @@
-# Mediant Session Border Controller for Microsoft Teams as a Managed Application
+# <<WORK IN PROGRESS!!>> - Mediant Session Border Controller for Microsoft Teams
+
+Create a session border controller (SBC) for Microsoft Teams voice.
 
 ## Introduction
 
