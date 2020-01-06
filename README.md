@@ -1,4 +1,4 @@
-# arm-templates
+# managed-application
 
 Development area for building block ARM templates
 
