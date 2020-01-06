@@ -71,11 +71,8 @@ Find (or create) a group by going to <https://aad.portal.azure.com>.  You will n
 Or via the commands.  Find your object ID from your user principal name
 
 ```bash
-az ad user show --upn-or-object-id richeney@microsoft.com --query objectId --output tsv
-95efbdcd-1e74-4428-a1a0-bf9a8884faa2
+myObjectId=$(az ad user show --upn-or-object-id richeney@microsoft.com --query objectId --output tsv)
 az ad user get-member-groups --upn-or-object-id 95efbdcd-1e74-4428-a1a0-bf9a8884faa2 --security-enabled-only --output json --query "[?contains(displayName, 'OCP')]"
-az ad group show --group "UK OCP CSA Team" --query objectId --output tsv
-fe816505-0da8-4150-8bdc-d195057644c3
 objectId=$(az ad group show --group "UK OCP CSA Team" --query objectId --output tsv)
 ```
 
@@ -84,8 +81,6 @@ objectId=$(az ad group show --group "UK OCP CSA Team" --query objectId --output 
 We'll use the unbuilt Owner role.
 
 ```bash
-az role definition list --name Owner --query [].name --output tsv
-8e3af657-a8ff-443c-a75c-2fe8c4bcb635
 roleId=$(az role definition list --name Owner --query [].name --output tsv)
 ```
 
@@ -101,11 +96,11 @@ az group create --location westeurope --name managedApplications --output json
 
 You'll need the raw path for the zip file.
 
-This repo is <https://github.com/azurecitadel/arm-templates> and the zip is in the root and called myFirstManagedApplication.zip.
+This repo is <https://github.com/richeney/managed-application> and the zip is in the root and called myFirstManagedApplication.zip.
 
 If you navigate through to it and right click the Download button then the Copy Link then the URL is:
 
-`https://github.com/azurecitadel/arm-templates/raw/master/myFirstManagedApplication.zip`
+`https://github.com/richeney/managed-application/raw/master/myFirstManagedApplication.zip`
 
 If it is in an Azure blob then you can use the following:
 
@@ -116,7 +111,7 @@ If it is in an Azure blob then you can use the following:
 ```bash
 objectId=$(az ad group show --group "UK OCP CSA Team" --query objectId --output tsv)
 roleId=$(az role definition list --name Owner --query [].name --output tsv)
-zipUri="https://github.com/azurecitadel/arm-templates/raw/master/myFirstManagedApplication.zip"
+zipUri="https://github.com/richeney/managed-application/raw/master/myFirstManagedApplication.zip"
 
 az managedapp definition create \
     --name "MyFirstManagedApplication" \
